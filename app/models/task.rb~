@@ -1,0 +1,5 @@
+class Task < ActiveRecord::Base
+  belongs_to :project
+  attr_accessible :completed?, :description, :difficulty, :name, :status, :time_extimate, :time_spent
+  belongs_to :project
+end

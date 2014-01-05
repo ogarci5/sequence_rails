@@ -1,0 +1,27 @@
+<div class="modal fade" id="newTask" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">New Task</h4>
+      </div>
+      <div class="modal-body">
+      	<%=form_for [@project, @task], html: {role: "form"} do |f|%>
+  				<div class="form-group">
+  					<%=f.label :name%>
+  					<%=f.text_field :name, class: "form-control"%>
+				  </div>
+				  <div class="checkbox">
+				    <label>
+				      <input type="checkbox"> Check me out
+				    </label>
+				  </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <%=f.submit class: "btn btn-sequence"%>
+      </div>
+      <%end%>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

@@ -1,0 +1,105 @@
+<%@projects.each do |project|%>
+	<%=render 'edit', project: project%>
+	<%=render 'destroy', project: project%>
+<%end%>
+<%=render 'new'%>
+<div class="row">
+	<div class="seq-div col-md-6">
+		<div class="table-responsive">
+		<table class="table table-bordered seq-table table-curved">
+			<tr>
+				<th>Projects</th>
+			</tr>
+			<tr class="seq-data-table">
+				<td id="projects-table">
+					<table class="seq-table-unstyled seq-table-header">
+						<tr>
+							<th>Name</th>
+							<th>ID</th>
+							<th>Description</th>
+							<th></th>
+						</tr>
+						<%num = 0%>
+						<%@projects.each do |project|%>
+							<tr class="hover" id="project-<%=project.id%>" onclick="show(<%=project.id%>);">
+								<td><%=project.name%></td>
+								<td><%=project.id%></td>
+								<td><%=project.description%></td>
+								<td>
+									<a href="#destroyProject<%=project.id%>" role="button" data-toggle="modal" class="close pull-right">&times;</a>
+									<a href="#editProject<%=project.id%>" role="button"  data-toggle="modal"><span class="glyphicon glyphicon-pencil pull-right"></i></a>
+								</td>
+							</tr>
+						<%end%>
+						<tr class="seq-full-row"><td></td></tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td><a href="#newProject" role="button" class="btn btn-default pull-right" data-toggle="modal">New Project</a></td>
+			</tr>
+		</table>
+		</div>
+	</div>
+	<div class="seq-div col-md-6">
+		<div id="show" class="table-responsive">
+		<table class="table table-bordered seq-table table-curved">
+			<tr>
+				<th rowspan="0">Tasks</th>
+			</tr>
+			<tr class="seq-data-table">
+				<td id="show"></td>
+			</tr>
+			<tr>
+				<td></td>
+			</tr>
+		</table>
+		</div>
+	</div>
+</div>
+<script>
+function show(id){
+  if($("#project-"+id).hasClass("lit")){
+  	$("tr.hover").switchClass('lit','',150);
+  	$("#show").html(
+  		'<table class="table table-bordered seq-table table-curved">'+
+			'	 <tr>'+
+			'		 <th rowspan="0">Tasks</th>'+
+			'	 </tr>'+
+			'	 <tr class="seq-data-table">'+
+			'		 <td id="show"></td>'+
+			'	 </tr>'+
+			'	 <tr>'+
+			'		 <td><a href="#addTask" role="button" class="btn btn-default pull-right" data-toggle="modal">Add Task</a></td>'+
+			'	 </tr>'+
+			'</table>'
+		);
+  }
+  else {
+  	$("tr.hover").switchClass('lit','',150);
+  	$("#project-"+id).switchClass('','lit',150);
+  	$("#show").load("/projects/"+id+"/tasks");
+  }
+}
+
+$(".hover").hover(function () {
+	if (!$(this).hasClass('animated')) {
+		if(!$(this).hasClass('lit')){
+			$(this).dequeue().stop().switchClass('','highlight',150);
+			$(this).find('span.glyphicon').dequeue().stop().switchClass('','glyphicon-highlight',150);
+			$(this).find('a.close').dequeue().stop().switchClass('','close-highlight',150);
+		}
+	}
+},
+	function () {
+		$(this).addClass('animated').switchClass('highlight','',150, function() {
+			$(this).removeClass('animated').dequeue();
+		});
+		$(this).find('span.glyphicon').switchClass('glyphicon-highlight','',150, function() {
+			$(this).find('span.glyphicon').removeClass('animated').dequeue();
+		});
+		$(this).find('a.close').switchClass('close-highlight','',150, function() {
+			$(this).find('a.close').removeClass('animated').dequeue();
+		});
+});
+</script>

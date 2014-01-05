@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  description: MyText
+  time_estimate: 1.5
+  time_spent: 1.5
+  difficulty: 1
+  completed: false
+  status: MyString
+  project: 
+
+two:
+  name: MyString
+  description: MyText
+  time_estimate: 1.5
+  time_spent: 1.5
+  difficulty: 1
+  completed: false
+  status: MyString
+  project: 
