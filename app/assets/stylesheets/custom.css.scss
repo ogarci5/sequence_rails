@@ -1,7 +1,7 @@
 @import "bootstrap";
 
 /* General styles */
-.form {
+/*.form {
   margin: 0 auto;
   input, textarea {
     width: 93%;
@@ -19,7 +19,13 @@
 	width: 100%;
 	text-align: left;
   }
+}*/
+.form {
+	textarea {
+		resize: vertical;
+	}
 }
+
 
 /*body, html, .container-fluid, .row-fluid, .seq-div {
 	height: 100%;
@@ -192,6 +198,16 @@ nav.navbar.navbar-default {
 		}
 		&.active a {
 			background:#1d0027;
+		}
+	}
+	.navbar-nav > .open > a {
+		background:#1d0027;
+	}
+	.navbar-nav > .open > .dropdown-menu a {
+		color:#333;
+		&:hover {
+			background:#400058;
+			color:#fff;
 		}
 	}
 	.navbar-toggle {

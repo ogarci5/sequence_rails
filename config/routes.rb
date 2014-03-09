@@ -1,9 +1,15 @@
 Sequence::Application.routes.draw do
-  resources :projects do
+  get "/login", to: "sessions#new"
+  post "/login", to: "sessions#create"
+  match "/logout", to: "sessions#destroy",  via: :delete
+
+ # scope '/sequence' do
+    resources :projects do
   	resources :tasks
-  end
+    end
   
-  root to: "home#index"
+    root to: "home#index"
+  #end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

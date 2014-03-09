@@ -15,7 +15,6 @@
 					<table class="seq-table-unstyled seq-table-header">
 						<tr>
 							<th>Name</th>
-							<th>ID</th>
 							<th>Description</th>
 							<th></th>
 						</tr>
@@ -23,7 +22,6 @@
 						<%@projects.each do |project|%>
 							<tr class="hover" id="project-<%=project.id%>" onclick="show(<%=project.id%>);">
 								<td><%=project.name%></td>
-								<td><%=project.id%></td>
 								<td><%=project.description%></td>
 								<td>
 									<a href="#destroyProject<%=project.id%>" role="button" data-toggle="modal" class="close pull-right">&times;</a>
@@ -78,7 +76,7 @@ function show(id){
   else {
   	$("tr.hover").switchClass('lit','',150);
   	$("#project-"+id).switchClass('','lit',150);
-  	$("#show").load("/projects/"+id+"/tasks");
+  	$("#show").load("/sequence/projects/"+id+"/tasks");
   }
 }
 

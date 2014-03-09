@@ -12,14 +12,14 @@
 			<table class="seq-table-unstyled seq-table-header">
 				<tr>
 					<th>Name</th>
-					<th>Organization</th>
+					<th>Completed?</th>
 					<th></th>
 				</tr>
 				<%num = 0%>
 				<%@tasks.each do |task|%>
 					<tr class="hover" id="task-<%=task.id%>">
 						<td><%=task.name%></td>
-						<td><%=task.id%>asdasdasdasdasdasdasd</td>
+						<td><%=check_box("task", "completed")%></td>
 						<td>
 							<a href="#destroyTask<%=task.id%>" role="button" data-toggle="modal" class="close pull-right">&times;</a>
 						<a href="#editTask<%=task.id%>" role="button"  data-toggle="modal"><span class="glyphicon glyphicon-pencil pull-right"></i></a>

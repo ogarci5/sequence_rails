@@ -4,27 +4,25 @@ class ProjectsController < ApplicationController
 		@project = Project.new
 	end
 	def create
-		@project = Project.new
-		if @task.save
-			@project.tasks << @task
+		@project = Project.new(params[:project])
+		if @project.save
 			redirect_to projects_path
 		else
-			flash[:error] = @task.errors
-			render project_tasks_path(@project)
+			flash[:danger] = @project.errors
+			render 'index'
 		end
 	end
 	def update
-		@project = Project.find(params[:project_id])
-		@task = Task.find(params[:id])
-		if @task.update_attributes(params[:task])
+		@project = Project.find(params[:id])
+		if @project.update_attributes(params[:project])
 			redirect_to projects_path
 		else
-			flash[:error] = @task.errors
-			render project_tasks_path(@project)
+			flash[:danger] = @project.errors
+			render 'index'
 		end
 	end
 	def destroy
-		Task.find(params[:id]).destroy
+		Project.find(params[:id]).destroy
 		redirect_to projects_path
 	end
 end

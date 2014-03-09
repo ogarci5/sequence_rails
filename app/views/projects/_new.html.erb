@@ -6,7 +6,7 @@
         <h4 class="modal-title">New Project</h4>
       </div>
       <div class="modal-body">
-      	<%=form_for @project, html: {role: "form"} do |f|%>
+      	<%=form_for @project, html: {role: "form", class: "form"} do |f|%>
   				<div class="form-group">
   					<%=f.label :name%>
   					<%=f.text_field :name, class: "form-control"%>
